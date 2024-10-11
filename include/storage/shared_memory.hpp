@@ -205,6 +205,7 @@ class SharedMemory
     SharedMemory(const std::filesystem::path &lock_file, const int id, const uint64_t size = 0)
     {
         sprintf(key, "%s.%d", "osrm.lock", id);
+        (void)lock_file; // This explicitly marks lock_file as used to avoid warning of unused variable
         if (0 == size)
         { // read_only
             shm = boost::interprocess::shared_memory_object(
